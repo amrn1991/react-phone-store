@@ -1,6 +1,7 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/js/all.js";
+import { Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import ProductList from "./components/ProductList";
 import Details from "./components/Details";
@@ -11,10 +12,12 @@ function App() {
   return (
     <>
       <Navbar />
-      <ProductList />
-      <Details />
-      <Cart />
-      <Default />
+      <Switch>
+        <Route path="/" exact component={ProductList} />
+        <Route path="/details" exact component={Details} />
+        <Route path="/cart" exact component={Cart} />
+        <Route component={Default} />
+      </Switch>
     </>
   );
 }
