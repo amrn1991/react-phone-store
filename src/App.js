@@ -1,3 +1,4 @@
+import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/js/all.js";
@@ -10,7 +11,7 @@ import Default from "./components/Default";
 
 function App() {
   return (
-    <>
+    <React.Fragment>
       <Navbar />
       <Switch>
         <Route path="/" exact component={ProductList} />
@@ -18,7 +19,7 @@ function App() {
         <Route path="/cart" exact component={Cart} />
         <Route component={Default} />
       </Switch>
-    </>
+    </React.Fragment>
   );
 }
 
