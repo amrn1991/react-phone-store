@@ -6,14 +6,28 @@ const ProductContext = React.createContext(); // a context consists of a provide
 // 1. Provider
 class ProductProvider extends Component {
   state = {
-    products: storeProducts,
+    products: [],
     detailProduct,
   };
+  componentDidMount() {
+    this.setProducts();
+  }
   addToCart = () => {
     console.log("Hello from add to cart");
   };
   handleDetail = () => {
     console.log("handle detail");
+  };
+
+  setProducts = () => {
+    let tempProducts = [];
+    storeProducts.forEach((item) => {
+      const singleItem = { ...item };
+      tempProducts = [...tempProducts, singleItem];
+    });
+    this.setState(() => {
+      return { products: tempProducts };
+    });
   };
   render() {
     return (
