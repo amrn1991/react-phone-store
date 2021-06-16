@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-// import { ProductConsumer } from "./../context";
+import { ProductConsumer } from "./../context";
 import { ProductWrapper } from "./styles";
 import PropTypes from "prop-types";
 
@@ -10,27 +10,31 @@ export default class Product extends Component {
     return (
       <ProductWrapper className="col-9 col-md-6 col-lg-3 mx-auto my-3">
         <div className="card">
-          <div
-            className="img-container p-5"
-            onClick={() => console.log("clicked!")}
-          >
-            <Link to="/details">
-              <img src={img} alt="product" className="card-img-top" />
-            </Link>
-            <button
-              className="cart-btn"
-              onClick={() => console.log("added to cart!")}
-              disabled={inCart}
-            >
-              {inCart ? (
-                <p className="text-capitalize mb-0" disabled>
-                  in cart
-                </p>
-              ) : (
-                <i className="fas fa-cart-plus"></i>
-              )}
-            </button>
-          </div>
+          <ProductConsumer>
+            {(value) => (
+              <div
+                className="img-container p-5"
+                onClick={() => value.handleDetail(id)}
+              >
+                <Link to="/details">
+                  <img src={img} alt="product" className="card-img-top" />
+                </Link>
+                <button
+                  className="cart-btn"
+                  onClick={() => value.addToCart(id)}
+                  disabled={inCart}
+                >
+                  {inCart ? (
+                    <p className="text-capitalize mb-0">in cart</p>
+                  ) : (
+                    <div>
+                      <i className="fas fa-cart-plus"></i>
+                    </div>
+                  )}
+                </button>
+              </div>
+            )}
+          </ProductConsumer>
 
           <div className="card-footer d-flex justify-content-between">
             <p className="mb-0 align-self-center">{title}</p>
