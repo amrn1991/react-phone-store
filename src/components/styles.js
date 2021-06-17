@@ -77,3 +77,18 @@ export const ProductWrapper = styled.div`
     transition: all 0.5s linear;
   }
 `;
+
+export const ModalContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  #modal {
+    background: var(--mainWhite);
+  }
+`;
