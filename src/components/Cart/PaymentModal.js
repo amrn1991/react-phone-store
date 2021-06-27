@@ -1,10 +1,12 @@
 import React from "react";
 
-const PaymentModal = ({ orderId, total, clearCart, history }) => {
+// import "./payment_modal.css";
+
+const PaymentModal = ({ orderId, history, clearCart, total }) => {
   // Put the payment variables here
   var payment = {
     sandbox: true, // if the account is sandbox or real
-    merchant_id: process.env.REACT_APP_MERCHANT_ID,
+    merchant_id: "1217663", // Replace your Merchant ID
     return_url: "http://sample.com/return",
     cancel_url: "http://sample.com/cancel",
     notify_url: "http://sample.com/notify",
@@ -27,7 +29,7 @@ const PaymentModal = ({ orderId, total, clearCart, history }) => {
   };
 
   // Called when user completed the payment. It can be a successful payment or failure
-  window.payhere.onCompleted = function onCompleted(oredrId) {
+  window.payhere.onCompleted = function onCompleted(orderId) {
     clearCart();
     history.push("/");
   };
